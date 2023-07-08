@@ -1,20 +1,18 @@
-import getUsers from "../actions/getUsers";
+import getConversations from "../actions/getConversations";
 import Sidebar from "../components/sidebar/Sidebar";
-import UserList from "./components/UserList";
+import ConversationList from "./components/ConversationList";
 
 type Props = {
   children: React.ReactNode;
 };
 
 const layout = async ({ children }: Props) => {
-  const users = await getUsers();
-
+  const conversations = await getConversations();
   return (
     // @ts-expect-error Server Componet
     <Sidebar>
       <div className="h-full">
-        <UserList users={users} />
-        {children}
+        <ConversationList initialItems={conversations} /> {children}
       </div>
     </Sidebar>
   );
